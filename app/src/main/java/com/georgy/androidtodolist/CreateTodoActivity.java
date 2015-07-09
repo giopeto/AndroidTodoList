@@ -1,6 +1,7 @@
 package com.georgy.androidtodolist;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +26,12 @@ public class CreateTodoActivity extends ActionBarActivity {
 
         todoService = new TodoService(this);
         todoService.open();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Create Todo");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_app);
+
     }
 
     @Override
@@ -49,16 +57,27 @@ public class CreateTodoActivity extends ActionBarActivity {
     }
 
     public void createTodo(View view) {
+
         EditText title = (EditText) findViewById(R.id.title);
         EditText description = (EditText) findViewById(R.id.description);
 
-        DatePicker myDatePicker = (DatePicker) findViewById(R.id.for_date);
-        SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy");
-        String forDate = df.format(new Date(myDatePicker.getYear() - 1900, myDatePicker.getMonth(), myDatePicker.getDayOfMonth()));
+        if (title.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter todo title", Toast.LENGTH_SHORT).show();
+        } else if (description.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter todo description", Toast.LENGTH_SHORT).show();
+        } else {
+            title.setOnEditorActionListener(new DoneOnEditorActionListener());
+            description.setOnEditorActionListener(new DoneOnEditorActionListener());
 
-        Todo allTodos = todoService.set(title.getText().toString(), description.getText().toString(), forDate.toString());
+            DatePicker myDatePicker = (DatePicker) findViewById(R.id.for_date);
+            SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy");
+            String forDate = df.format(new Date(myDatePicker.getYear() - 1900, myDatePicker.getMonth(), myDatePicker.getDayOfMonth()));
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            Todo allTodos = todoService.set(title.getText().toString(), description.getText().toString(), forDate.toString());
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

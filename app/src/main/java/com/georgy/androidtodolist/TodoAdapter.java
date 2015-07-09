@@ -25,7 +25,6 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         public void onButtonClickListner(int position,String value);
     }
 
-
     public void setCustomButtonListner(customButtonListener listener) {
         this.customListner = listener;
     }
@@ -34,25 +33,20 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         super(context, R.layout.list_view, todos);
         this.todos = todos;
         this.context = context;
-
     }
 
     public class ViewHolder {
         TextView title;
         TextView description;
+        TextView for_date;
         Button button;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         final  Todo todo;
         todo = getItem(position);
-
-        //List todos1 = getItemId(position);
-
-        Log.d("TODOOOOOO: ",todo.toString());
-       // todo.g
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
@@ -67,21 +61,20 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
             viewHolder.button = (Button) convertView
                     .findViewById(R.id.deleteBtn);
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-
-
-            // Lookup view for data population
-            TextView title = (TextView) convertView.findViewById(R.id.title);
-            TextView description = (TextView) convertView.findViewById(R.id.description);
-            // Populate the data into the template view using the data object
-            title.setText(todo.getTitle());
-            description.setText(todo.getDescription());
-
-
-
         }
 
+        // Lookup view for data population
+        TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView description = (TextView) convertView.findViewById(R.id.description);
+        TextView for_date = (TextView) convertView.findViewById(R.id.for_date);
+
+        // Populate the data into the template view using the data object
+        title.setText(todo.getTitle());
+        description.setText(todo.getDescription());
+        for_date.setText(todo.getForDate());
 
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
 

@@ -17,8 +17,10 @@
         android:title="@string/action_search"
         yourapp:showAsAction="ifRoom" />-->
     <!-- Settings, should always be in the overflow -->
+
+
     <item android:id="@+id/button_create_todo"
-        android:icon="@drawable/ic_action_settings"
+        android:icon="@drawable/ic_action_add"
         android:title="@string/button_add_edit_todo"
         yourapp:showAsAction="ifRoom"
         />

@@ -1,51 +1,73 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.georgy.androidtodolist.CreateTodoActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/title"
-        android:hint="@string/create_todo_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.georgy.androidtodolist.CreateTodoActivity"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
 
-    <EditText
-        android:id="@+id/description"
-        android:hint="@string/create_todo_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/title"
+            android:hint="@string/create_todo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
 
-    <DatePicker
-        android:id="@+id/for_date"
-        android:layout_width="wrap_content"
-        android:layout_height="328dp"
-        android:firstDayOfWeek="2" >
-    </DatePicker>
+        <EditText
+            android:id="@+id/description"
+            android:hint="@string/create_todo_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+        />
+
+        <DatePicker
+            android:id="@+id/for_date"
+            android:layout_width="wrap_content"
+            android:layout_height="340dp"
+            android:firstDayOfWeek="2" >
+        </DatePicker>
 
 
-    <Button
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/button_create_todo"
-        android:layout_width="214dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button_create_todo"
-        android:onClick="createTodo" />
+        <Button
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/button_create_todo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_create_todo"
+            android:onClick="createTodo" />
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button_create_todo" >
-    </ListView>
+<!--
+        <ImageButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/button_create_todo"
+            android:text="@string/button_create_todo"
+            android:onClick="createTodo"
+            android:src="@drawable/ic_action_save"
+            />-->
 
-</LinearLayout>
+
+
+        <!--<ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_create_todo" >
+        </ListView>-->
+
+    </LinearLayout>
+</ScrollView>

@@ -60,22 +60,6 @@ public class TodoService {
     public List getAllTodos() {
         List todos = new ArrayList();
 
-       /* String TODOS = "Todos";
-        String TODO_ID = "id";
-        String TODO_TITLE = "title";
-        String TODO_DESCRIPTION = "description";
-        String TODO_FOR_DATE = "for_date";
-
-        String DATABASE_NAME = "Todos.db";
-        int DATABASE_VERSION = 1;
-
-        String DATABASE_CREATE = "create table " + TODOS
-                + "(" + TODO_ID + " integer primary key autoincrement, "
-                + TODO_TITLE + " text not null, "
-                + TODO_DESCRIPTION + " text not null, "
-                + TODO_FOR_DATE + " text not null);";
-        database.execSQL(DATABASE_CREATE);*/
-
         Cursor cursor = database.query(DataBaseWrapper.TODOS,
                 STUDENT_TABLE_COLUMNS, null, null, null, null, null);
 
